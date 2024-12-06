@@ -1,0 +1,62 @@
+﻿@{
+    @model Mitra.Models.Order
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@{
+    ViewData["Title"] = "Update Order Status";
+}
+
+<h1>Update Order Status</h1>
+
+<h3>Order Information</h3>
+<ul>
+    <li><strong>Order ID:</strong> @Model.OrderId</li>
+    <li><strong>Order Date:</strong> @Model.Order_Date.ToString("g")</li>
+    <li><strong>Total Amount:</strong> $@Model.TotalAmount</li>
+    <li><strong>Status:</strong> @Model.Status</li>
+</ul>
+
+<form asp-action="UpdateStatus" method="post">
+    <input type="hidden" name="orderId" value="@Model.OrderId" />
+    <div class="form-group">
+        <label for="status">Order Status</label>
+        <select id="status" name="status" class="form-control">
+            @if (Model.Status == "Pending")
+            {
+                <option value="Pending" selected>Pending</option>
+            }
+            else
+            {
+                <option value="Pending">Pending</option>
+            }
+            @if (Model.Status == "Shipped")
+            {
+                <option value="Shipped" selected>Shipped</option>
+            }
+            else
+            {
+                <option value="Shipped">Shipped</option>
+            }
+            @if (Model.Status == "Delivered")
+            {
+                <option value="Delivered" selected>Delivered</option>
+            }
+            else
+            {
+                <option value="Delivered">Delivered</option>
+            }
+            @if (Model.Status == "Cancelled")
+            {
+                <option value="Cancelled" selected>Cancelled</option>
+            }
+            else
+            {
+                <option value="Cancelled">Cancelled</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">Update Status</button>
+</form>
+
+<a asp-action="Details" asp-route-orderId="@Model.OrderId" class="btn btn-secondary">Back to Order Details</a>

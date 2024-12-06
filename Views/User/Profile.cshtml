@@ -1,0 +1,34 @@
+﻿@*@model Mitra.Models.User
+
+    @{
+        ViewData["Title"] = "Profile";
+    }
+
+    <div class="container mt-4">
+        <h1 class="text-center">Your Profile</h1>
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5>Name: @Model.Name</h5>
+                <h5>Email: @Model.Email</h5>
+                <h5>Role: @(Model.Role == 0 ? "Admin" : "User")</h5>
+            </div>
+        </div>
+    </div>*@
+
+@model Mitra.Models.User
+
+@{
+    Layout = Model.Role == 0 ? "~/Views/Shared/_LayoutAdmin.cshtml" : "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Profile";
+}
+
+<div class="container mt-4">
+    <h1 class="text-center">Your Profile</h1>
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5>Name: @Model.Name</h5>
+            <h5>Email: @Model.Email</h5>
+            <h5>Role: @(Model.Role == 0 ? "Admin" : "User")</h5>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+﻿@*@model Mitra.Models.Product
+
+    <h2>Delete Category</h2>
+
+    <p>Are you sure you want to delete this category?</p>
+    <p>
+        <strong>@Model.Name</strong>
+    </p>
+
+
+
+    <form asp-action="DeleteConfirmed" method="post">
+        <input type="hidden" asp-for="CategoryId" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>*@
+@{
+    @model Mitra.Models.Product
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<h1>Delete Product</h1>
+<p>Are you sure you want to delete this Product?</p>
+<div>
+    <h4>@Model.Name</h4>
+</div>
+
+<form asp-action="Delete" asp-route-id="@Model.ProductId" method="post">
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

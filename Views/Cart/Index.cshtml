@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Mitra.Models.Cart>
+
+<h2>Your Cart</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Product?.Name</td>
+                <td>@item.Quantity</td>
+                <td>@item.Product?.Price</td>
+                <td>@item.TotalPrice()</td>
+                <td>
+                    <form method="post" asp-action="RemoveFromCart" asp-route-cartId="@item.CartId" asp-route-userId="@item.Id">
+                        <button type="submit">Remove</button>
+                    </form>
+                    <form method="post" asp-action="UpdateQuantity" asp-route-cartId="@item.CartId" asp-route-userId="@item.Id">
+                        <input type="number" name="quantity" value="@item.Quantity" />
+                        <button type="submit">Update</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Total Price: @ViewBag.TotalPrice</h3>

@@ -1,4 +1,10 @@
 ﻿@{
-    Layout = "_Layout";
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "_LayoutAdmin"; // Set layout for admin
+    }
+    else
+    {
+        Layout = "_Layout"; // Default layout for normal users
+    }
 }
-

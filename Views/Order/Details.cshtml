@@ -1,0 +1,45 @@
+﻿@{
+    @model Mitra.Models.Order
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@{
+    ViewData["Title"] = "Order Details";
+}
+
+<h1>Order Details</h1>
+
+<h3>Order Information</h3>
+<ul>
+    <li><strong>Order ID:</strong> @Model.OrderId</li>
+    <li><strong>Order Date:</strong> @Model.Order_Date.ToString("g")</li>
+    <li><strong>Total Amount:</strong> $@Model.TotalAmount</li>
+    <li><strong>Status:</strong> @Model.Status</li>
+    <li><strong>Delivery Address:</strong> @Model.Delivery_Address</li>
+</ul>
+
+<h3>Products</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var detail in Model.OrderDetails)
+        {
+            <tr>
+                <td>@detail.Product.Name</td>
+                <td>@detail.Quantity</td>
+                <td>$@detail.Price</td>
+                <td>$@detail.SubTotal</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="UserOrders" asp-route-userId="@Model.Id" class="btn btn-primary">Back to Orders</a>

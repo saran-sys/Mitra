@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Mitra.Models.Cart>
+
+<div class="cart-summary">
+    <h4>Cart Summary</h4>
+    <p>Total Items: @Model.Sum(item => item.Quantity)</p>
+    <p>Total Price: @Model.Sum(item => item.TotalPrice())</p>
+    <a asp-action="Index" asp-controller="Cart" class="btn btn-primary">View Cart</a>
+</div>
